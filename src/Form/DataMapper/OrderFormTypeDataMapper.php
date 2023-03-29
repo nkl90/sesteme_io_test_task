@@ -2,17 +2,35 @@
 
 namespace App\Form\DataMapper;
 
+use App\Entity\Operation;
+use App\Entity\Product;
+use App\Enum\TaxByCountryEnum;
 use Symfony\Component\Form\DataMapperInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormInterface;
 
-class OrderFormDataMapper implements DataMapperInterface
+class OrderFormTypeDataMapper implements DataMapperInterface
 {
     public function mapDataToForms(mixed $viewData, \Traversable $forms)
     {
-        dump($viewData);
+        if(!$viewData) {
+            return;
+        }
     }
 
     public function mapFormsToData(\Traversable $forms, mixed &$viewData)
     {
-        dump($forms);
+        /** @var FormInterface[] $forms */
+        $forms = iterator_to_array($forms);
+        /** @var Product $product */
+        $product = $forms['product']->getData();
+        /** @var string $taxNumber */
+        $taxNumber = $forms['taxNumber']->getData();
+        try{
+            $viewData = new Operation($taxNumber,$product->getPrice());
+        } catch (\DomainException|\InvalidArgumentException $e) {
+            $forms['taxNumber']->addError(new FormError($e->getMessage()));
+            return;
+        }
     }
 }

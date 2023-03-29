@@ -1,0 +1,50 @@
+{% extends 'default/layout.html.twig' %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h4 class="mb-3">Order details</h4>
+            <ul>
+                <li>ID: {{ operation.id }}</li>
+                <li>Date: {{ operation.createdAt|date('d/m/Y') }}</li>
+                <li>Tax number: {{ operation.taxNumber }}</li>
+                <li>Price: {{ operation.price }}</li>
+                <li>Tax: {{ operation.tax }}</li>
+                <li>Total price (tax included): <span class="text-decoration-underline">{{ operation.total }}</span></li>
+            </ul>
+        </div>
+        <div class="col ">
+            <h4 class="mb-3">Payment details</h4>
+            {{ form_start(form) }}
+            <div class="my-3">
+                {{ form_widget(form.paymentMethod) }}
+            </div>
+
+            <div class="row gy-3">
+                <div class="col">
+                    {{ form_row(form.cardNumber) }}
+                </div>
+            </div>
+            <div class="row gy-3">
+                <div class="col">
+                    {{ form_row(form.expiration) }}
+                </div>
+
+                <div class="col">
+                    {{ form_row(form.cvv) }}
+                </div>
+            </div>
+            <div class="row gy-3">
+                <div class="col">
+                    {{ form_row(form.ownerName) }}
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            {{ form_row(form.checkout) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}

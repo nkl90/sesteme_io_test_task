@@ -2,7 +2,9 @@
 
 namespace App\Enum;
 
-enum PaymentStartusEnum
+enum PaymentStatusEnum: string
 {
+    case NEW = 'new';
+    case PAID = 'paid';
 
 }
