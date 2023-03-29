@@ -29,8 +29,8 @@ class CheckoutFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^4[0-9]{12}(?:[0-9]{3})?$/',
                         'message' => 'Credit card number must be in format 0000 0000 0000 0000',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('expiration', null, [
                 'constraints' => [
@@ -38,8 +38,8 @@ class CheckoutFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/',
                         'message' => 'Expiration date must be in format MM/YYYY',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('cvv', null, [
                 'constraints' => [
@@ -47,8 +47,8 @@ class CheckoutFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^[0-9]{3,4}$/',
                         'message' => 'CVV must be in format 000',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('ownerName', null, [
                 'constraints' => [
@@ -56,8 +56,8 @@ class CheckoutFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^[a-zA-Z ]*$/',
                         'message' => 'Owner name must be in format John Doe',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('checkout', SubmitType::class)
         ;

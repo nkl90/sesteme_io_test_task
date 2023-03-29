@@ -10,7 +10,6 @@ enum TaxByCountryEnum: string
 
     public static function taxByCountry(string $countyCode): float
     {
-
         return match ($countyCode) {
             'DE' => floatval(self::DE->value),
             'IT' => floatval(self::IT->value),

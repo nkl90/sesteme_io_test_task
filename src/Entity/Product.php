@@ -23,7 +23,8 @@ class Product
     #[ORM\Column(type: Types::STRING, length: 3)]
     private string $priceCurrency;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->id = null;
     }
 
@@ -49,7 +50,7 @@ class Product
         return Money::ofMinor($this->price, $this->priceCurrency);
     }
 
-    public function changePrice(Money $price) : void
+    public function changePrice(Money $price): void
     {
         $this->price = $price->getMinorAmount()->toInt();
         $this->priceCurrency = $price->getCurrency()->getCurrencyCode();

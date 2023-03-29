@@ -23,7 +23,7 @@ class OrderFormType extends AbstractType
                 'mapped' => false,
                 'class' => Product::class,
                 'choice_label' => function ($product) {
-                    return $product->getName() . ' (' . $product->getPrice() . ')';
+                    return $product->getName().' ('.$product->getPrice().')';
                 },
                 'constraints' => [
                     new NotBlank(),
@@ -36,7 +36,7 @@ class OrderFormType extends AbstractType
                     new Regex([
                         'pattern' => TaxByCountryEnum::getRegex(),
                         'message' => 'Tax number must be in format XX0000000000',
-                    ])
+                    ]),
                 ],
             ])
             ->add('submit', SubmitType::class, [

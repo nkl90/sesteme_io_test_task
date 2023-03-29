@@ -43,8 +43,7 @@ class Operation
     public function __construct(
         string $taxNumber,
         Money $price
-    )
-    {
+    ) {
         $this->setTax($this->calculateTax($price, $taxNumber));
         $this->setPrice($price);
         $this->setTaxNumber($taxNumber);
@@ -82,7 +81,6 @@ class Operation
 
         return $this;
     }
-
 
     public function getTax(): Money
     {
@@ -123,6 +121,7 @@ class Operation
     {
         $countryCode = $this->parseTaxNumber($taxNumber);
         $tax = $price->getMinorAmount()->toInt() * TaxByCountryEnum::taxByCountry($countryCode);
+
         return Money::ofMinor($tax, $price->getCurrency()->getCurrencyCode());
     }
 
