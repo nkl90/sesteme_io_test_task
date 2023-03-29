@@ -1,0 +1,9 @@
+parameters:
+    level: 3
+    scanFiles:
+    scanDirectories:
+    paths:
+        - src
+        - tests
+includes:
+ 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
