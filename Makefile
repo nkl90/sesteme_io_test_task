@@ -16,7 +16,6 @@ ps:
 init:
 	${DCR} php composer install
 	${DCR} node yarn install --force
-	db.reload.app
 
 up:
 	${DC} --env-file ${ENV} up -d
@@ -61,20 +60,7 @@ fix.cs:
 phpstan:
 	${DCR} php vendor/bin/phpstan analyse --xdebug -c phpstan.neon
 
-db.reload.app:
-	./bin/console.sh d:d:d --force
-	./bin/console.sh d:d:c
-	./bin/console.sh d:m:m --no-interaction
-	./bin/console.sh d:s:u --force
-	./bin/console.sh d:f:l --no-interaction
+db.migrate:
+	${DCR} php bin/console d:s:u --force
+	${DCR} php bin/console d:f:l --no-interaction
 
-db.reload.test:
-	./bin/console.sh --env=test d:d:d --force
-	./bin/console.sh --env=test d:d:c
-	./bin/console.sh --env=test d:s:u --force
-	./bin/console.sh --env=test d:m:m --no-interaction
-
-db.reload: db.reload.app db.reload.test
-
-test:
-	./bin/phpunit
