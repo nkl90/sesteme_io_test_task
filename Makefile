@@ -16,6 +16,7 @@ ps:
 init:
 	${DCR} php composer install
 	${DCR} node yarn install --force
+	db.reload.app
 
 up:
 	${DC} --env-file ${ENV} up -d
@@ -48,6 +49,9 @@ console:
 yarn:
 	${DCR} node yarn $(cmd)
 	${RFR}
+
+phpunit:
+	${DCR} php bin/phpunit $(cmd)
 
 # Example: make fix-cs flags="--dry-run"
 fix.cs:
